@@ -1,0 +1,29 @@
+= javascript_include_tag 'Colour'
+= javascript_include_tag 'pixel'
+
+.hero-unit
+  %h1 Random Pixel Art
+  %p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+  %p
+  .row
+    %p
+    %button#refresh.btn{type: "button"} Refresh
+    %form.form-horizontal
+      .control-group
+        %label.control-label Color Space
+        .controls
+          %label.radio
+            %input{checked: "true", name: "colourType", type: "radio", value: "RGBColour"}
+            RGB
+          %label.radio
+            %input{name: "colourType", type: "radio", value: "HSLColour"}
+            HSL
+          %label.radio
+            %input{name: "colourType", type: "radio", value: "HSVColour"}
+            HSV
+        .control-group
+          %label.control-label Width
+          .controls
+            %input{name: "nx", type: "text", value: "HSVColour"}/
+
+    %canvas#canvas{height: "400", width: "400"}
