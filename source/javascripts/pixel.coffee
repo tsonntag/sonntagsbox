@@ -1,7 +1,7 @@
 $ ->
   rand  = (n) -> Math.random()*n
   nrand = (n) -> Math.floor(rand(n))
-  RGBColour.rand = -> new RGBColour(nrand(r()+1),nrand(g()+1),nrand(b()+1))
+  RGBColour.rand = -> new RGBColour(r()[0]+nrand(r()[1]+1),g()[0]+nrand(g()[1]+1),b()[0]+nrand(b()[1]+1))
   HSLColour.rand = -> new HSLColour(rand(360),rand(100),rand(100))
   HSVColour.rand = -> new HSVColour(rand(360),rand(100),rand(100))
 
@@ -26,7 +26,9 @@ $ ->
           c.fill()
       this
 
-  slider_val = (selector,_default) -> $(selector).slider().data('slider')?.getValue()	? _default
+  slider_val = (selector,_default) -> 
+    v = $(selector).slider().data('slider')?.getValue()	? _default
+    v
 
   nx = -> slider_val('#slider_nx',10)
   ny = -> slider_val('#slider_ny',10)
@@ -50,16 +52,23 @@ $ ->
 
   $('#refresh').click update
 
-  slider_setup = (selector,value,fct) ->
+  slider_setup = (selector,min,max,value,orientation,fct) ->
+    $(selector).slider { 
+      'min': min,
+      'max':   max,
+      'step':  1,
+      'value': value,
+      'orientation': orientation
+    } 
     $(selector).slider('setValue',value).on('slide', fct)
 
-  slider_setup '#slider_nx', 10, update
-  slider_setup '#slider_ny', 10, update
-  slider_setup '#slider_dx', 40, render
-  slider_setup '#slider_dy', 40, render
-  slider_setup '#slider_color_1', 255, update
-  slider_setup '#slider_color_2', 255, update
-  slider_setup '#slider_color_3', 255, update
+  slider_setup '#slider_nx', 1, 100, 20, 'horizontal', update
+  slider_setup '#slider_ny', 1, 100, 20, 'vertical',   update
+  slider_setup '#slider_dx', 1, 80, 40, 'horizontal',  update
+  slider_setup '#slider_dy', 1, 80, 40, 'horizontal',  update
+  slider_setup '#slider_color_1', 1, 255, [0,255], 'horizontal', update
+  slider_setup '#slider_color_2', 1, 255, [0,255], 'horizontal', update
+  slider_setup '#slider_color_3', 1, 255, [0,255], 'horizontal', update
 
   update() 
   render()

@@ -25,19 +25,24 @@
             HSV
       .control-group
         %label.control-label 1
-        .controls= slider :slider_color_1, 10, 100, [20,40]#, class: 'span4'
+        .controls
+          #slider_color_1
       .control-group
         %label.control-label 2
-        .controls= slider :slider_color_2, 0, 255, 255, class: 'span2'
+        .controls
+          #slider_color_2
       .control-group
         %label.control-label 3 
-        .controls= slider :slider_color_3, 0, 255, 255, class: 'span2'
+        .controls
+          #slider_color_3
       .control-group
         %label.control-label Pixel width
-        .controls= slider :slider_dx, 1, 200, 40, class: 'span2'
+        .controls
+          #slider_dx
       .control-group
         %label.control-label Pixel height
-        .controls= slider :slider_dy, 1, 200, 40, class: 'span2'
+        .controls
+          #slider_dy
   .row
     .span1
     .span
