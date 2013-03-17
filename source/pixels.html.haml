@@ -1,5 +1,7 @@
 = javascript_include_tag 'Colour'
 = javascript_include_tag 'pixel'
+= javascript_include_tag 'bootstrap-slider'
+= stylesheet_link_tag 'slider'
 
 .hero-unit
   %h1 Random Pixel Art
@@ -13,17 +15,36 @@
         %label.control-label Color Space
         .controls
           %label.radio
-            %input{checked: "true", name: "colourType", type: "radio", value: "RGBColour"}
+            = radio_button_tag :colour_type, value: 'RGBColour', checked: true
             RGB
           %label.radio
-            %input{name: "colourType", type: "radio", value: "HSLColour"}
+            = radio_button_tag :colour_type, value: 'HSLColour'
             HSL
           %label.radio
-            %input{name: "colourType", type: "radio", value: "HSVColour"}
+            = radio_button_tag :colour_type, value: 'HSVColour'
             HSV
-        .control-group
-          %label.control-label Width
-          .controls
-            %input{name: "nx", type: "text", value: "HSVColour"}/
-
-    %canvas#canvas{height: "400", width: "400"}
+      .control-group
+        %label.control-label 1
+        .controls= slider :slider_color_1, 10, 100, [20,40]#, class: 'span4'
+      .control-group
+        %label.control-label 2
+        .controls= slider :slider_color_2, 0, 255, 255, class: 'span2'
+      .control-group
+        %label.control-label 3 
+        .controls= slider :slider_color_3, 0, 255, 255, class: 'span2'
+      .control-group
+        %label.control-label Pixel width
+        .controls= slider :slider_dx, 1, 200, 40, class: 'span2'
+      .control-group
+        %label.control-label Pixel height
+        .controls= slider :slider_dy, 1, 200, 40, class: 'span2'
+  .row
+    .span1
+    .span
+      = slider :slider_nx, 1, 100, 10, class: 'span4'
+  .row
+    .span
+      = slider :slider_ny, 1, 100, 10, class: 'span4', orientation: 'vertical'
+    .span1
+      %canvas#canvas
+            
