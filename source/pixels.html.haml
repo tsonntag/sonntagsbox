@@ -8,48 +8,58 @@
   %p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
   %p
   .row
-    %p
-    %button#refresh.btn{type: "button"} Refresh
-    %form.form-horizontal
-      .control-group
-        %label.control-label Color Space
-        .controls
-          %label.radio
-            = radio_button_tag :colour_type, value: 'RGBColour', checked: true
-            RGB
-          %label.radio
-            = radio_button_tag :colour_type, value: 'HSLColour'
-            HSL
-          %label.radio
-            = radio_button_tag :colour_type, value: 'HSVColour'
-            HSV
-      .control-group
-        %label.control-label 1
-        .controls
-          #slider_color_1
-      .control-group
-        %label.control-label 2
-        .controls
-          #slider_color_2
-      .control-group
-        %label.control-label 3 
-        .controls
-          #slider_color_3
-      .control-group
-        %label.control-label Pixel width
-        .controls
-          #slider_dx
-      .control-group
-        %label.control-label Pixel height
-        .controls
-          #slider_dy
+    .span
+      %button#refresh.btn{type: "button"} Refresh
+  .row
+    .span4
+      %form.form-horizontal
+        .control-group
+          %label.control-label Color Space
+          .controls
+            %label.radio
+              = radio_button_tag :colour_type, value: 'rgb', checked: true
+              RGB
+            %label.radio
+              = radio_button_tag :colour_type, value: 'hsl'
+              HSL
+            %label.radio
+              = radio_button_tag :colour_type, value: 'hsv'
+              HSV
+    .span
+      .row
+        .span
+          #slider_colour_0
+        .span
+          %label
+            0
+      .row
+        .span
+          #slider_colour_1
+        .span
+          %label
+            1
+      .row
+        .span
+          #slider_colour_2
+        .span
+          %label
+            2
+  .row              
+    #slider_dx
+    Pixel width
+  .row              
+    #slider_dy
+    Pixel height
+  %br
+  %br
+  %p
   .row
     .span1
     .span
-      = slider :slider_nx, 1, 100, 10, class: 'span4'
+      #slider_nx
   .row
     .span
-      = slider :slider_ny, 1, 100, 10, class: 'span4', orientation: 'vertical'
+      #slider_ny
     .span1
       %canvas#canvas
             
