@@ -1,65 +1,58 @@
 = javascript_include_tag 'Colour'
 = javascript_include_tag 'pixel'
-= javascript_include_tag 'bootstrap-slider'
-= stylesheet_link_tag 'slider'
+= javascript_include_tag 'jquery-ui-1.9.2.custom.min'
+= javascript_include_tag 'underscore'
+= stylesheet_link_tag 'jquery-ui-1.9.2.custom'
 
 .hero-unit
   %h1 Random Pixel Art
   %p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
   %p
   .row
-    .span
-      %button#refresh.btn{type: "button"} Refresh
-  .row
-    .span4
-      %form.form-horizontal
-        .control-group
-          %label.control-label Color Space
-          .controls
-            %label.radio
-              = radio_button_tag :colour_type, value: 'rgb', checked: true
-              RGB
-            %label.radio
-              = radio_button_tag :colour_type, value: 'hsl'
-              HSL
-            %label.radio
-              = radio_button_tag :colour_type, value: 'hsv'
-              HSV
-    .span
-      .row
-        .span
+    %p
+    %button#refresh.btn{type: "button"} Refresh
+    %form.form-horizontal
+      .control-group
+        %label.control-label Color Space
+        .controls
+          %label.radio
+            = radio_button_tag :colour_type, value: 'RGBColour', checked: true
+            RGB
+          %label.radio
+            = radio_button_tag :colour_type, value: 'HSLColour'
+            HSL
+          %label.radio
+            = radio_button_tag :colour_type, value: 'HSVColour'
+            HSV
+      .control-group
+        %label.control-label#colour_label_0
+        .controls
           #slider_colour_0
-        .span
-          %label
-            0
-      .row
-        .span
+      .control-group
+        %label.control-label#colour_label_1
+        .controls
           #slider_colour_1
-        .span
-          %label
-            1
-      .row
-        .span
+      .control-group
+        %label.control-label#colour_label_2
+        .controls
           #slider_colour_2
-        .span
-          %label
-            2
-  .row              
-    #slider_dx
-    Pixel width
-  .row              
-    #slider_dy
-    Pixel height
-  %br
-  %br
-  %p
+      .control-group
+        %label.control-label Pixel width
+        .controls
+          #slider_dx
+      .control-group
+        %label.control-label Pixel height
+        .controls
+          #slider_dy
+      .control-group
+        %label.control-label Width
+        .controls
+          #slider_nx
+      .control-group
+        %label.control-label Height
+        .controls
+          #slider_ny
   .row
-    .span1
     .span
-      #slider_nx
-  .row
-    .span
-      #slider_ny
-    .span1
       %canvas#canvas
             
