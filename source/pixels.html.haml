@@ -9,33 +9,34 @@
   %p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
   %p
   .row
-    %p
     %button#refresh.btn{type: "button"} Refresh
-    %form.form-horizontal
-      .control-group
-        %label.control-label Color Space
-        .controls
-          %label.radio
-            = radio_button_tag :colour_type, value: 'RGBColour', checked: true
-            RGB
-          %label.radio
-            = radio_button_tag :colour_type, value: 'HSLColour'
-            HSL
-          %label.radio
-            = radio_button_tag :colour_type, value: 'HSVColour'
-            HSV
-      .control-group
+  .row
+    .span
+      %form.form-horizontal
+        .control-group
+          %label.control-label Color Space
+          .controls
+            %label.radio
+              = radio_button_tag :colour_type, value: 'RGBColour', checked: true
+              RGB
+            %label.radio
+              = radio_button_tag :colour_type, value: 'HSLColour'
+              HSL
+            %label.radio
+              = radio_button_tag :colour_type, value: 'HSVColour'
+              HSV
+    .span4
+      %form.form-inline
         %label.control-label#colour_label_0
-        .controls
-          #slider_colour_0
-      .control-group
+        #slider_colour_0
         %label.control-label#colour_label_1
-        .controls
-          #slider_colour_1
-      .control-group
-        %label.control-label#colour_label_2
-        .controls
+        #slider_colour_1
+        %fieldset
+          %label.control-label#colour_label_2
           #slider_colour_2
+        %fieldset
+          %label.control-label Colour distance 
+          #slider_colour_distance
       .control-group
         %label.control-label Pixel width
         .controls
