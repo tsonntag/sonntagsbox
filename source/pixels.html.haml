@@ -5,54 +5,47 @@
 = stylesheet_link_tag 'jquery-ui-1.9.2.custom'
 
 .hero-unit
-  %h1 Random Pixel Art
+  %h2 Random Pixel Art
   %p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
   %p
   .row
     %button#refresh.btn{type: "button"} Refresh
   .row
-    .span
-      %form.form-horizontal
-        .control-group
-          %label.control-label Color Space
-          .controls
-            %label.radio
-              = radio_button_tag :colour_type, value: 'RGBColour', checked: true
-              RGB
-            %label.radio
-              = radio_button_tag :colour_type, value: 'HSLColour'
-              HSL
-            %label.radio
-              = radio_button_tag :colour_type, value: 'HSVColour'
-              HSV
-    .span4
+    .span2
+      %form.form-inline
+        %label.control-label Color Space
+        %br
+        %label.radio
+          = radio_button_tag :colour_type, value: 'RGBColour', checked: true
+          RGB
+        %br
+        %label.radio
+          = radio_button_tag :colour_type, value: 'HSLColour'
+          HSL
+        %br
+        %label.radio
+          = radio_button_tag :colour_type, value: 'HSVColour'
+          HSV
+    .span3
       %form.form-inline
         %label.control-label#colour_label_0
         #slider_colour_0
         %label.control-label#colour_label_1
         #slider_colour_1
-        %fieldset
-          %label.control-label#colour_label_2
-          #slider_colour_2
-        %fieldset
-          %label.control-label Colour distance 
-          #slider_colour_distance
-      .control-group
+        %label.control-label#colour_label_2
+        #slider_colour_2
+        %label.control-label Colour distance
+        #slider_colour_distance
+    .span3.offset1
+      %form.form-inline
         %label.control-label Pixel width
-        .controls
-          #slider_dx
-      .control-group
+        #slider_dx
         %label.control-label Pixel height
-        .controls
-          #slider_dy
-      .control-group
+        #slider_dy
         %label.control-label Width
-        .controls
-          #slider_nx
-      .control-group
+        #slider_nx
         %label.control-label Height
-        .controls
-          #slider_ny
+        #slider_ny
   .row
     .span
       %canvas#canvas

@@ -56,38 +56,39 @@ $ ->
   class ColourMatrix
     constructor: (@nx,@ny,@factory) -> 
       @data = (new Array(@ny) for ix in [1..@nx])
-      @update(@factory)
-    update: (@factory) ->
-      @each (x,y) => 
-        c = @factory.get_colour(@neighbours(x,y))
-        @set x, y, c
-      this
-    each: (f) -> 
+      @points = []
       for y in [0..@ny-1]
         for x in [0..@nx-1]
-          f(x,y,@get(x,y))
-    get: (x,y)     -> @data[x][y]
-    set: (x,y,val) -> @data[x][y] = val
-    neighbours: (x,y) ->
+          @points.push {x: x, y: y} 
+      @update(@factory)
+    update: (@factory) ->
+      _.each _.shuffle(@points), (point) => 
+        c = @factory.get_colour(@neighbours(point))
+        @set point, c
+      this
+    get: (point)        -> @data[point.x][point.y]
+    set: (point,colour) -> @data[point.x][point.y] = colour
+    neighbours: (point) ->
       nb = []
       _.each [[1,0],[-1,0],[0,1],[0,-1]], (pair) =>
-        x1 = x+pair[0]; y1 = y+pair[1]
+        x1 = point.x+pair[0]; y1 = point.y+pair[1]
         if 0 <= x1 < @nx and 0 <= y1 < @ny
-          nb.push c if (c = @get(x1,y1))?
+          nb.push c if (c = @get({x:x1,y:y1}))?
       nb
     render: (canvas,dx,dy)->
       canvas.attr('width', @nx*dx)
       canvas.attr('height',@ny*dy)
       c = canvas.get(0).getContext('2d')
-      @each (ix,iy,colour) => 
+      _.each @points, (point) => 
         c.beginPath()
-        c.rect(dx*ix,dy*iy,dx,dy)
-        c.fillStyle = colour.getCSSHexadecimalRGB()
+        c.rect(dx*point.x,dy*point.y,dx,dy)
+        c.fillStyle = @get(point).getCSSHexadecimalRGB()
         c.fill()
       this
     dump: -> 
-      @each (x,y,c) =>
-        console.log "#{x},#{y} #{c.to_s()}"
+      _.each @points, (point) =>
+        c = @get(point)
+        console.log "#{point.x},#{point.y} #{c.to_s()}"
         for nb in @neighbours(x,y)
           console.log "   #{nb.to_s()} dist=#{c.distance(nb)}"
 
@@ -122,10 +123,10 @@ $ ->
       'slide': fct
     }
 
-  slider_setup '#slider_nx', false, 1, 100, 20, 'horizontal', update_matrix
-  slider_setup '#slider_ny', false, 1, 100, 20, 'horizontal', update_matrix
-  slider_setup '#slider_dx', false, 1,  80, 40, 'horizontal', render
-  slider_setup '#slider_dy', false, 1,  80, 40, 'horizontal', render
+  slider_setup '#slider_nx', false, 1, 100, 15, 'horizontal', update_matrix
+  slider_setup '#slider_ny', false, 1, 100, 15, 'horizontal', update_matrix
+  slider_setup '#slider_dx', false, 1,  80, 20, 'horizontal', render
+  slider_setup '#slider_dy', false, 1,  80, 20, 'horizontal', render
   slider_setup '#slider_colour_distance', true, 0, 100, [0,100], 'horizontal', update_matrix
   update_colour_sliders = ->
     type = colour_type()
@@ -137,3 +138,5 @@ $ ->
   update_colour_sliders()
   update_matrix() 
   render()
+  _.each matrix.points, (a) ->
+    console.log "(#{a[0]},#{a[1]})"
