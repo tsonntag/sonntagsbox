@@ -1,0 +1,22 @@
+:javascript
+  Locales = {
+    de: {
+      red: 'Rot',
+      green: 'Grün',
+      blue: 'Blau',
+      hue: 'Farbton',
+      saturation: 'Sättigung',
+      lightness: 'Helligkeit',
+      value: 'Wert',
+    },
+    en: {
+      red: 'Red',
+      green: 'Green',
+      blue: 'Blue',
+      hue: 'Hue',
+      saturation: 'Saturation',
+      lightness: 'Lightness',
+      value: 'Value',
+    }
+  }
+  Locales.t = function(key){ return Locales['#{I18n.config.locale}'][key] } 

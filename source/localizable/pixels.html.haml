@@ -3,17 +3,20 @@
 = javascript_include_tag 'jquery-ui-1.9.2.custom.min'
 = javascript_include_tag 'underscore'
 = stylesheet_link_tag 'jquery-ui-1.9.2.custom'
+= partial :locales
 
 .hero-unit
   %h2 Random Pixel Art
   %p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
   %p
   .row
-    %button#refresh.btn{type: "button"} Refresh
+    %button#refresh.btn{type: "button"}
+      = I18n.t :refresh
   .row
     .span2
       %form.form-inline
-        %label.control-label Color Space
+        %label.control-label
+          = I18n.t :colour_space
         %br
         %label.radio
           = radio_button_tag :colour_type, value: 'RGBColour', checked: true
@@ -28,25 +31,29 @@
           HSV
     .span3
       %form.form-inline
+        %label.control-label= I18n.t :n_colours
+        = number_field_tag :n_colours, min: 0
+        %label.control-label= I18n.t :colour_distance
+        #slider_colour_distance
         %label.control-label#colour_label_0
         #slider_colour_0
         %label.control-label#colour_label_1
         #slider_colour_1
         %label.control-label#colour_label_2
         #slider_colour_2
-        %label.control-label Colour distance
-        #slider_colour_distance
+        %label.control-label= I18n.t :neighbour_distance
+        #slider_neighbour_distance
     .span3.offset1
       %form.form-inline
-        %label.control-label Pixel width
+        %label.control-label= I18n.t :pixel_width
         #slider_dx
-        %label.control-label Pixel height
+        %label.control-label= I18n.t :pixel_height
         #slider_dy
-        %label.control-label Width
+        %label.control-label= I18n.t :width
         #slider_nx
-        %label.control-label Height
+        %label.control-label= I18n.t :height
         #slider_ny
   .row
     .span
-      %canvas#canvas
-            
+      %canvas#canvas{style: 'display:none'}
+      %img#canvas_img{alt: "#{I18n.t :right_click_to_save_me}"}

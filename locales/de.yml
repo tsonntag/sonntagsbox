@@ -1,0 +1,12 @@
+---
+de:
+  refresh: 'Neu' 
+  colour_space: 'Farbraum' 
+  colour_distance: 'Farbabstand' 
+  neighbour_distance: 'Farbabstand zum Nachbarn'
+  pixel_width: 'Pixelbreite'
+  pixel_height: 'Pixelhöhe'
+  width: 'Breite'
+  height: 'Höhe'
+  right_click_to_save_me: 'Zum Speichern rechts klicken'
+  n_colours: 'Anzahl Farben'
