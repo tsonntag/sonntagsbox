@@ -1,59 +1,89 @@
 = javascript_include_tag 'Colour'
+= javascript_include_tag 'colours'
 = javascript_include_tag 'pixel'
 = javascript_include_tag 'jquery-ui-1.9.2.custom.min'
 = javascript_include_tag 'underscore'
 = stylesheet_link_tag 'jquery-ui-1.9.2.custom'
+= stylesheet_link_tag 'user'
 = partial :locales
 
-.hero-unit
+.my-unit
   %h2 Random Pixel Art
-  %p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+  %p This is a template for a simple marketing or informational website. 
   %p
+.my-unit
+  %h4
+    #refresh_colours.btn
+      %i.icon-refresh
+    = I18n.t :colours
   .row
-    %button#refresh.btn{type: "button"}
-      = I18n.t :refresh
+    .span5
+      %form.form-horizontal
+        .control-group
+          %label.control-label= I18n.t :n_colours
+          .controls= number_field_tag :n_colours, min: 1, class: 'span1'
+        .control-group
+          %label.control-label= I18n.t :colour_space
+          .controls
+            %label.radio
+              = radio_button_tag :colour_type, value: 'RGBColour', checked: true
+              RGB
+            %label.radio
+              = radio_button_tag :colour_type, value: 'HSLColour'
+              HSL
+            %label.radio
+              = radio_button_tag :colour_type, value: 'HSVColour'
+              HSV
+        .control-group
+          %label.control-label#colour_label_0
+          .controls
+            #slider_colour_0
+        .control-group
+          %label.control-label#colour_label_1
+          .controls
+            #slider_colour_1
+        .control-group
+          %label.control-label#colour_label_2
+          .controls
+            #slider_colour_2
+        .control-group
+          %label.control-label= I18n.t :colour_distance
+          .controls
+            #slider_colour_distance
+    .span1
+    .span4
+      %canvas#colours_canvas{style: 'display:none'}
+      %img#colours_img
+.my-unit
+  %h4
+    #refresh.btn
+      %i.icon-refresh
+    = I18n.t :picture
   .row
-    .span2
-      %form.form-inline
-        %label.control-label
-          = I18n.t :colour_space
-        %br
-        %label.radio
-          = radio_button_tag :colour_type, value: 'RGBColour', checked: true
-          RGB
-        %br
-        %label.radio
-          = radio_button_tag :colour_type, value: 'HSLColour'
-          HSL
-        %br
-        %label.radio
-          = radio_button_tag :colour_type, value: 'HSVColour'
-          HSV
-    .span3
-      %form.form-inline
-        %label.control-label= I18n.t :n_colours
-        = number_field_tag :n_colours, min: 0
-        %label.control-label= I18n.t :colour_distance
-        #slider_colour_distance
-        %label.control-label#colour_label_0
-        #slider_colour_0
-        %label.control-label#colour_label_1
-        #slider_colour_1
-        %label.control-label#colour_label_2
-        #slider_colour_2
-        %label.control-label= I18n.t :neighbour_distance
-        #slider_neighbour_distance
-    .span3.offset1
-      %form.form-inline
-        %label.control-label= I18n.t :pixel_width
-        #slider_dx
-        %label.control-label= I18n.t :pixel_height
-        #slider_dy
-        %label.control-label= I18n.t :width
-        #slider_nx
-        %label.control-label= I18n.t :height
-        #slider_ny
+    .span5
+      %form.form-horizontal
+        .control-group
+          %label.control-label= I18n.t :pixel_size
+          .controls
+            = number_field_tag :dx, min: 1, class: 'span1', value: 20
+            x
+            = number_field_tag :dy, min: 1, class: 'span1', value: 20
+        .control-group
+          %label.control-label= I18n.t :size
+          .controls
+            = number_field_tag :nx, min: 1, class: 'span1', value: 10
+            x
+            = number_field_tag :ny, min: 1, class: 'span1', value: 10
+    .span5
+      %form.form
+        .control-group
+          %label.control-label= I18n.t :neighbour_distance
+          .controls
+            #slider_neighbour_distance
   .row
     .span
-      %canvas#canvas{style: 'display:none'}
-      %img#canvas_img{alt: "#{I18n.t :right_click_to_save_me}"}
+      %canvas#image_canvas{style: 'display:none'}
+      %img#image_img{alt: "#{I18n.t :right_click_to_save_me}"}
+  .row
+    .span
+      #json
