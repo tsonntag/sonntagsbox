@@ -5,9 +5,11 @@ $ ->
 
   matrix = undefined
   render = ->
+    matrix_json = matrix.to_json()
+    matrix = ColourMatrix.from_json(matrix_json)
     image = new PixelImage(matrix,dx(),dy())
     image.render_image('image_canvas','image_img')
-    $('#json').html(JSON.stringify(matrix))
+    $('#json').html(JSON.stringify(matrix.to_json()))
   update = ->
     update_colours() unless colours_factory
     factory = new ColourDistanceFilter(colours_factory, neighbour_distance())
