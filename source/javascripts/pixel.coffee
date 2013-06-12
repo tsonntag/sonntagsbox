@@ -3,27 +3,32 @@ $ ->
     clearTimeout(@timeout) if @timeout?
     @timeout = setTimeout(fct,200)
 
+  # the picture
   matrix = undefined
   render = ->
+		#matrix_json = matrix.to_json()
+		#matrix = ColourMatrix.from_json(matrix_json)
     image = new PixelImage(matrix,dx(),dy())
     image.render_image('image_canvas','image_img')
-		#$('#json').html(JSON.stringify(matrix))
+    $('#json').html(JSON.stringify(matrix.to_json()))
   update = ->
     update_colours() unless colours_factory
     factory = new ColourDistanceFilter(colours_factory, neighbour_distance())
     matrix = new ColourMatrix(nx(),ny())
     matrix.fill_random(factory)
-    #matrix.dump()
     render()
 
+  # colours
   colours_factory = undefined
-  colours_matrix = undefined
   render_colours = ->
     update_colours() unless colours_factory
     colours = _.sortBy(colours_factory.colours, (c) -> c.sort_key())
     colours_matrix = new ColourMatrix(colours,20)
     image = new PixelImage(colours_matrix,20,20)
     image.render_image('colours_canvas','colours_img')
+    $.each colour_type().labels, (i, label) ->
+      values = $("#slider_colour_#{i}").slider("values")
+      $("#colour_label_#{i}").html(Locales.t(label) + " " + values[0] + " - " + values[1])
   update_colours = ->
     f = new RandomColourFactory(colour_type(),colour_ranges())
     colours_factory = new ColourSetFactory(f,n_colours(),colour_distance())
@@ -55,12 +60,11 @@ $ ->
   $('input[name=nx],input[name=ny],input[name=dx],input[name=dy]').on 'change keyup', -> schedule(update)
   $('#slider_neighbour_distance').slider { range: true, min: 0, max: 100, values: [0,100], slide: -> schedule(update) }
   $('#slider_colour_distance').slider { range: true, min: 0, max: 100, values: [0,100], slide: -> schedule(update_colours) }
+
   update_colour_sliders = ->
-    type = colour_type()
-    $.each type.ranges, (i, range) ->
-      $("#slider_colour_#{i}").slider { range: true, min: range[0], max: range[1], values: range, slide: -> schedule(update_colours)}
-    $.each type.labels, (i, label) -> $("#colour_label_#{i}").html(Locales.t(label))
+    $.each colour_type().ranges, (i, range) ->
+      r = range.slice()
+      $("#slider_colour_#{i}").slider { range: true, min: r[0], max: r[1], values: r, slide: -> schedule(update_colours)}
+    update_colours()
 
   update_colour_sliders()
-  update_colours()
-  #matrix.dump()

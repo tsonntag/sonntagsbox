@@ -8,6 +8,7 @@ $ ->
     d0 = a[0]-b[0]; d1 = a[1]-b[1]; d2 = a[2]-b[2]
     d0*d0+d1*d1+d2*d2
 
+  Colour.from_json = (json) -> new RGBColour(json.r,json.g,json.b,json.a)
   RGBColour.labels   = ['red', 'green', 'blue']
   RGBColour.ranges   = [[0,255], [0,255], [0,255]]
   RGBColour.rand_fct = nrand
@@ -29,6 +30,7 @@ $ ->
     d = @getHSL()
     d.h*1000000 + d.s*1000 + d.l
   Colour::to_s = -> "(#{@data()})"
+  Colour::to_json = -> @getRGB()
 
   root.RandomColourFactory = class RandomColourFactory
     constructor: (@colour_type, @colour_ranges) ->
@@ -98,12 +100,14 @@ $ ->
       nb
     neighbour_colours: (point) -> c for nb in @neighbours(point) when (c = @colour(nb))?
     point_to_s: (p)-> "#{@x(p)},#{@y(p)} #{@colour(p).to_s()}"
+    to_json: -> { nx: @nx, colours: _.map(@colours, (c)->c.to_json()) }
     dump: ->
       _.each @points, (p) =>
         console.log @point_to_s(p)
         c = @colour(p)
         for nb in @neighbours(p)
           console.log "   #{@point_to_s(nb)} dist=#{c.distance(@colour(nb))}"
+  ColourMatrix.from_json = (json) -> new ColourMatrix(_.map(json.colours, (js)->Colour.from_json(js)), json.nx)
 
   root.PixelImage = class PixelImage
     constructor: (@matrix,@dx,@dy) ->
