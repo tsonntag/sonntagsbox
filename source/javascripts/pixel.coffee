@@ -63,7 +63,7 @@ $ ->
 
   update_colour_sliders = ->
     $.each colour_type().ranges, (i, range) ->
-      r = range.slice()
+      r = range.slice() # dup range since slider modifies values
       $("#slider_colour_#{i}").slider { range: true, min: r[0], max: r[1], values: r, slide: -> schedule(update_colours)}
     update_colours()
 
