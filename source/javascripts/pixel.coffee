@@ -7,7 +7,7 @@ $ ->
   render = ->
     image = new PixelImage(matrix,dx(),dy())
     image.render_image('image_canvas','image_img')
-    $('#json').html(JSON.stringify(matrix))
+		#$('#json').html(JSON.stringify(matrix))
   update = ->
     update_colours() unless colours_factory
     factory = new ColourDistanceFilter(colours_factory, neighbour_distance())
@@ -54,7 +54,7 @@ $ ->
 
   $('input[name=nx],input[name=ny],input[name=dx],input[name=dy]').on 'change keyup', -> schedule(update)
   $('#slider_neighbour_distance').slider { range: true, min: 0, max: 100, values: [0,100], slide: -> schedule(update) }
-  $('#slider_colour_distance').slider { range: true, min: 0, max: 100, values: [0,100], slide: -> schedule(update) }
+  $('#slider_colour_distance').slider { range: true, min: 0, max: 100, values: [0,100], slide: -> schedule(update_colours) }
   update_colour_sliders = ->
     type = colour_type()
     $.each type.ranges, (i, range) ->
