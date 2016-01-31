@@ -18,7 +18,7 @@
     = javascript_include_tag  "bootstrap"
     / Fav and touch icons
     %link{href: "bootstrap/ico/favicon.png", rel: "shortcut icon"}/
-    
+
   %body
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
@@ -27,11 +27,11 @@
           %a.brand{href: "/"} sonntagsbox
           .nav-collapse.collapse
             %ul.nav
-              - { 'home' => 'index', 'pixel art' => 'pixels', 'contact' => 'contact' }.each do |title, name|
-                %li{class: page_classes == name ? 'active' : ''} 
+              - { 'pixel art' => 'pixels' }.each do |title, name|
+                %li{class: page_classes == name ? 'active' : ''}
                   = link_to title, "/#{name}.html"
     .container
-      = yield 
+      = yield
     %hr/
     %footer
       %p © Thomas Sonntag 2013
