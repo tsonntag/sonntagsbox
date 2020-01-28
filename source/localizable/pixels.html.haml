@@ -14,14 +14,14 @@
       %i.icon-refresh
     = I18n.t :colours
   .row
-    .span5
+    .col-5
       %form.form-horizontal
-        .control-group
-          %label.control-label= I18n.t :n_colours
-          .controls= number_field_tag :n_colours, min: 1, class: 'span1'
-        .control-group
-          %label.control-label= I18n.t :colour_space
-          .controls
+        .form-group
+          %label= I18n.t :n_colours
+          = number_field_tag :n_colours, min: 1, class: 'col-4 form-control'
+        .form-group
+          %label= I18n.t :colour_space
+          .form-control
             %label.radio
               = radio_button_tag :colour_type, value: 'RGBColour', checked: true
               RGB
@@ -31,24 +31,24 @@
             %label.radio
               = radio_button_tag :colour_type, value: 'HSVColour'
               HSV
-        .control-group
-          %label.control-label#colour_label_0
-          .controls
+        .form-group
+          %label#colour_label_0
+          .form-control
             #slider_colour_0
-        .control-group
-          %label.control-label#colour_label_1
-          .controls
+        .form-group
+          %label#colour_label_1
+          .form-control
             #slider_colour_1
-        .control-group
-          %label.control-label#colour_label_2
-          .controls
+        .form-group
+          %label#colour_label_2
+          .form-control
             #slider_colour_2
-        .control-group
-          %label.control-label= I18n.t :colour_distance
-          .controls
+        .form-group
+          %label= I18n.t :colour_distance
+          .form-control
             #slider_colour_distance
-    .span1
-    .span4
+    .col-1
+    .col-4
       %canvas#colours_canvas{style: 'display:none'}
       %img#colours_img
 .my-unit
@@ -57,30 +57,30 @@
       %i.icon-refresh
     = I18n.t :picture
   .row
-    .span5
+    .col-5
       %form.form-horizontal
-        .control-group
-          %label.control-label= I18n.t :pixel_size
-          .controls
-            = number_field_tag :dx, min: 1, class: 'span1', value: 20
+        .form-group
+          %label= I18n.t :pixel_size
+          .form-control
+            = number_field_tag :dx, min: 1, class: 'col-1', value: 20
             x
-            = number_field_tag :dy, min: 1, class: 'span1', value: 20
-        .control-group
-          %label.control-label= I18n.t :size
-          .controls
-            = number_field_tag :nx, min: 1, class: 'span1', value: 10
+            = number_field_tag :dy, min: 1, class: 'col-1', value: 20
+        .form-group
+          %label= I18n.t :size
+          .form-control
+            = number_field_tag :nx, min: 1, class: 'col-1', value: 10
             x
-            = number_field_tag :ny, min: 1, class: 'span1', value: 10
-    .span5
+            = number_field_tag :ny, min: 1, class: 'col-1', value: 10
+    .col-5
       %form.form
-        .control-group
-          %label.control-label= I18n.t :neighbour_distance
-          .controls
+        .form-group
+          %label= I18n.t :neighbour_distance
+          .form-control
             #slider_neighbour_distance
   .row
-    .span
+    .col-
       %canvas#image_canvas{style: 'display:none'}
       %img#image_img{alt: "#{I18n.t :right_click_to_save_me}"}
   .row
-    .span
+    .col-
       //#json

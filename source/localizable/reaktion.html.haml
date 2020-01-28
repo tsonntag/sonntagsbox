@@ -1,18 +1,14 @@
 = javascript_include_tag 'reaktion'
-= stylesheet_link_tag 'user'
-= partial :locales
+
+.my-unit
+  %h2 Miss Deine Reaktion
+  %p
+
+.my-unit
+  .row
+    #elm
 
 :javascript
-  $(function() {
-    console.log( "ready!" );
-    var app = Elm.Reaktion.init({
-      node: document.getElementById('elm')
-    });
-  });
- 
-.my-unit
-  %h2 Teste Deine Reaktion
-  %p
-.my-unit
-  %h4
-    #elm
+   var app = Elm.Reaktion.init({
+             node: document.getElementById('elm')
+         });
