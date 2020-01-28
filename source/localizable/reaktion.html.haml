@@ -1,0 +1,18 @@
+= javascript_include_tag 'reaktion'
+= stylesheet_link_tag 'user'
+= partial :locales
+
+:javascript
+  $(function() {
+    console.log( "ready!" );
+    var app = Elm.Reaktion.init({
+      node: document.getElementById('elm')
+    });
+  });
+ 
+.my-unit
+  %h2 Teste Deine Reaktion
+  %p
+.my-unit
+  %h4
+    #elm

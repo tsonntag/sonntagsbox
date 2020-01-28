@@ -1,0 +1,14 @@
+= javascript_include_tag 'farben'
+
+.my-unit
+  %h2 Welche Farbe hat das Wort ?
+  %p
+
+.my-unit
+  .row
+    #elm
+
+:javascript
+   var app = Elm.Farben.init({
+             node: document.getElementById('elm')
+         });
