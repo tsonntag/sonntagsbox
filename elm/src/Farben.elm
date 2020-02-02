@@ -5,7 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Time exposing (..)
-import Debug exposing (log)
+--import Debug exposing (log)
 import Utils exposing (..)
 import ItemLists exposing (data)
 import Array exposing (..)
@@ -67,9 +67,9 @@ type Msg
   | SetInputFactor String
   | SetPage Page
 
-spy : String -> a -> a
-spy info thing =
-    Debug.log (info ++ (Debug.toString thing)) thing
+--spy : String -> a -> a
+----spy info thing =
+--  Debug.log (info ++ (Debug.toString thing)) thing
 
 
 nextCmd : Model -> Cmd Msg
@@ -113,7 +113,7 @@ update msg model =
             case model.itemList of
                 Just (item :: rest) ->
                     ( { model | interval = (toFloat model.interval) * model.factor |> ceiling,
-                                item     = Just item |> spy "ITEM",
+                                item     = Just item,
                                 itemList = Just rest }
                     , nextCmd model
                     )

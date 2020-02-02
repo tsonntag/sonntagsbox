@@ -34,19 +34,19 @@
         .form-group
           %label#colour_label_0
           .form-control
-            #slider_colour_0
+            = input_tag :range, id: :colour_0, class: :form_control_range
         .form-group
           %label#colour_label_1
           .form-control
-            #slider_colour_1
+            = input_tag :range, id: :colour_1, class: :form_control_range
         .form-group
           %label#colour_label_2
           .form-control
-            #slider_colour_2
+            = input_tag :range, id: :colour_2, class: :form_control_range
         .form-group
           %label= I18n.t :colour_distance
           .form-control
-            #slider_colour_distance
+            = input_tag :range, id: :colour_distance, class: :form_control_range
     .col-1
     .col-4
       %canvas#colours_canvas{style: 'display:none'}
@@ -76,11 +76,11 @@
         .form-group
           %label= I18n.t :neighbour_distance
           .form-control
-            #slider_neighbour_distance
+            = input_tag :range, id: :neighbour_distance, class: :form_control_range
   .row
-    .col-
+    .col
       %canvas#image_canvas{style: 'display:none'}
       %img#image_img{alt: "#{I18n.t :right_click_to_save_me}"}
   .row
-    .col-
+    .col
       //#json
