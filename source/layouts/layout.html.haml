@@ -9,7 +9,7 @@
     %title sonntagsbox
 
     / Bootstrap core CSS
-    %link{:crossorigin => "anonymous", :href => "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", :integrity => "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", :rel => "stylesheet"}
+    %link{:crossorigin => "anonymous", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", :integrity => "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", :rel => "stylesheet"}
 
     / Bootstrap core js
     %script{:crossorigin => "anonymous", :integrity => "sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n", :src => "https://code.jquery.com/jquery-3.4.1.slim.min.js"}
@@ -30,28 +30,42 @@
         }
       }
     / Custom styles for this template
-    /%link{:href => "starter-template.css", :rel => "stylesheet"}
+    /%link{href: "starter-template.css", :rel => "stylesheet"}
   %body.pt-5
     %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
-      %a.navbar-brand{:href => "index.html"} sonntagsbox
-      %button.navbar-toggler{"aria-controls" => "navbarsExampleDefault", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarsExampleDefault", "data-toggle" => "collapse", :type => "button"}
+      %a.navbar-brand{href: "index.html"} sonntagsbox
+      %button.navbar-toggler{"aria-controls" => "navbarsId", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarsExampleDefault", "data-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
-      #navbarsExampleDefault.collapse.navbar-collapse
+      #navbarsId.collapse.navbar-collapse
         %ul.navbar-nav.mr-auto
-          /%li.nav-item
-          / %a.nav-link{:href => "pixels.html"}
-          /   pixel art
-          /   %span.sr-only (current)
           %li.nav-item
-            %a.nav-link{:href => "reaktion.html"}
+            %a.nav-link{href: "reaktion.html"}
               reaktion
           %li.nav-item
-            %a.nav-link{:href => "farben.html"}
+            %a.nav-link{href: "farben.html"}
               farben 
+          %li.nav-item.dropdown
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", :role => "button"}
+              KAG
+            .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+              %a.dropdown-item{href: "5b.html"} Klasse 5b
+              /.dropdown-divider
+              %a.dropdown-item{href: "Q2.html"} Q2
 
-    %main.container{:role => "main"}
+
+          /%li.nav-item
+          /  %a.nav-link{href: "5b.html"}
+          /    5b 
+          /%li.nav-item
+          /  %a.nav-link{href: "Q2.html"}
+          /    Q2 
+
+    %main.container{:role => "main", style: "min-height: 1000px"}
       .pt-5
         = yield
 
 
+    %footer
+      %a.nav-link.float-right.tiny-font{href: "impressum.html"}
+        Impressum
 
