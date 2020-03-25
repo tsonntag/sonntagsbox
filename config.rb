@@ -1,6 +1,6 @@
 ## Livereload
 activate :livereload
-activate :i18n, mount_as_root: :en
+#activate :i18n, mount_as_root: :en
 
 ###
 # Compass
