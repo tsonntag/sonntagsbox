@@ -29,14 +29,13 @@
           font-size: 3.5rem;
         }
       }
-    / Custom styles for this template
-    /%link{href: "starter-template.css", :rel => "stylesheet"}
+  %link{href: "/stylesheets/user.css", rel: "stylesheet"}
   %body.pt-5
     %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
       %a.navbar-brand{href: "index.html"} sonntagsbox
-      %button.navbar-toggler{"aria-controls" => "navbarsId", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarsExampleDefault", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggler{"aria-controls" => "navbarsId", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
-      #navbarsId.collapse.navbar-collapse
+      #navbarSupportedContent.collapse.navbar-collapse
         %ul.navbar-nav.mr-auto
           %li.nav-item
             %a.nav-link{href: "/koffein/reaktion.html"}
